@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const connectionString = 
-'mongodb+srv://asyikin:220990@task-manager.dxtlho3.mongodb.net/?retryWrites=true&w=majority&appName=task-manager'
+'mongodb+srv://asyikin:xxxxx@task-manager.dxtlho3.mongodb.net/?retryWrites=true&w=majority&appName=task-manager'
 
 mongoose
     .connect(connectionString)
