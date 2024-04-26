@@ -1,20 +1,25 @@
+require('./db/connect/')
+
 const express = require('express');
 const app = express();
-const tasks = require ('./controller/routes/tasks-routes')
+const tasks = require('./routes/tasks-routes')
 
-//middleware - call express.json as a function
+//middleware - parse incoming req body with JSON payloads
 app.use(express.json())
 
 //routes
 app.get('/', (req, res) => {
-    res.send('Task Manager App')
+    res.send('Hello')
 })
 
-//use tasks routes for the /api/v1/tasks
+//Middleware - Handle request that matches this route 'tasks'
 app.use('/api/v1/tasks', tasks)
 
 
-
+const port = 3000
+app.listen(port, (req, res) => {
+    console.log(`Server is listening on port ${port}`);
+})
 
 
 
@@ -25,6 +30,3 @@ app.use('/api/v1/tasks', tasks)
 // app.delete('api/v1/tasks/:id')         - delete task
 
 
-const port = 3000
-
-app.listen(port, console.log(`Server is listening on port ${port}`))
