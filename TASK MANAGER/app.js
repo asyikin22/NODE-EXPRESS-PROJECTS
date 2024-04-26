@@ -4,13 +4,11 @@ const tasks = require('./routes/tasks-routes')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 
+//Middleware to serve static file
+app.use(express.static('./public'))
+
 //middleware - parse incoming req body with JSON payloads
 app.use(express.json())
-
-//routes
-app.get('/', (req, res) => {
-    res.send('Hello')
-})
 
 //Middleware - Handle request that matches this route 'tasks'
 app.use('/api/v1/tasks', tasks)
@@ -31,10 +29,6 @@ const start = async() => {
 }
 
 start()
-
-
-
-
 
 // app.get('api/v1/tasks')                - get all the task
 // app.post('api/v1/tasks')               - create a new task
