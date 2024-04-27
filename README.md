@@ -1,6 +1,6 @@
 # TASK MANAGER
 
-**PROBLEMS-SOLUTIONS**
+**ERRORS-SOLUTIONS**
 
 ![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/c965c3ce-46c6-4908-89cd-8a38eec940e9)
 
@@ -108,5 +108,37 @@
 
 ![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/2500f1da-47e4-4c93-a623-bf9446d7ae55)
 
-**WE HAVE THE CORE FUNCTIONALITY AND CONNECTION TO THE DATABASE. BUT HOW CAN WE IMPROVE OUR CODE?**
+**WE HAVE THE CORE FUNCTIONALITY AND CONNECTION TO THE DB BUT HOW CAN WE IMPROVE OUR CODE?**
+* Setting up custom 404 response
+* Setting up asynchronous wrapper for controller
+* Setting up error handler middleware
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/9b389c8e-78c8-421d-a5ce-9d20bc3a9a58)
+
+**Refactor error**:
+* Controller file: Create new error object for getTask, updateTask, deleteTask
+* Error-handler file: log error into console, change argument inside the status and message
+  
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/a1ce072c-12dd-48f8-a0d3-20f21f575cae)
+
+**Extend class Error**
+* Create new folder named 'error' and a file called 'custom-error'
+* Use constructor method - this is invoked when we create a new instance of a class - CustomAPIError
+  1) Pass in two arguments - message and status code
+  2) Call Super
+  3) Pass in message value = status code
+* Create a variable - createCustomError
+* Import both class and variable to controller file
+* Replace error object with 'return next (createCustomError(`No task with id : ${taskID}`, 404))'
+* Inside error handler file - require  CustomAPIError
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/1ce09581-ec5b-4162-a3b5-60948d9dfb2d)
+
+
+
+
+
+
+
+
 
