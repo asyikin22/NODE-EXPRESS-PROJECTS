@@ -134,6 +134,130 @@
 
 ![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/1ce09581-ec5b-4162-a3b5-60948d9dfb2d)
 
+# STORE API
+
+**ERRORS-SOLUTIONS**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/7a261e5a-777b-4403-a29a-08639542e188)
+
+
+**DEPENDENCIES**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/703988b6-a3d8-4641-bb6c-731436d87ae1)
+
+**Files + Folder structure + First setup**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/953fa5fc-f12d-4218-a16e-cbbf22b4e444)
+
+**Setting up router-controller**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/4fd8bd8e-b12f-4a70-9c30-1453e8a10c35)
+
+**getAllProductsStatic function vs getAllProducts function**
+* Note that the type of JSON response will change as we progress further in the project depending on the logic of query
+  
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/2da060e1-20dd-48ba-8d6d-608a14082e3f)
+
+**Express-async-errors**
+* Link: https://www.npmjs.com/package/express-async-errors
+* We use this to replace try catch method.
+* Require the package on main file
+* Note that at this stage, we don’t have to include 'next', we simply need to throw an error
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/91d18f81-1ac0-463d-bbed-1d3992f054e6)
+
+**Setting up model**
+* Create product file - product.json
+* Create model folder - product-models.js
+* Require mongoose
+* Create productScheme variable for 6 properties:
+  1) Name
+  2) Price
+  3) Featured
+  4) Rating
+  5) Created at
+  6) Company
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/e1f7a552-875f-4dff-b198-34524e4e6627)
+
+**Adding values inside product.json into our database**
+* Create a file named 'populate.js'
+* Require 'dotenv'
+* connectDB function
+* Require the products
+* Pass on products to the database by creating new variable jsonProducts
+* Connect to database using 'start' variable and try catch method to handle error and debug
+* Use exit.process  to ensure that the Node.js process exits after completing its task.
+* 0 means successful, 1 means there's an error
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/faabbd0b-8a02-4f54-ae47-bef46bf142d4)
+
+**Find specific product in the database using mongoose queries**
+* Link: https://mongoosejs.com/docs/queries.html
+* Require file path in controller file
+* Pass in object via products variable - Product.find method
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/d181ec2b-dad8-4888-af00-bc81e0de369a)
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/a2aeff02-2141-4c15-a73e-b37289f0833f)
+
+**Query string parameter**
+* A component of a URL that allows you to pass information to a web server as part of an HTTP request.
+* It consists of a key-value pair appended to the end of a URL after a question mark (?), and multiple parameters are separated by ampersands (&).
+* Link(keyword: search): https://hn.algolia.com/api
+* Example: http://hn.algolia.com/api/v1/search?query=…
+* req.query is used to filter the products based on the query parameters passed in the URL.
+* We then send a JSON response containing the matching products along with the total count of products.
+* When we try in the postman for example, if we look for a product that has featured value as true (?featured=true), we will get back 7 as number hits
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/9636c900-21cc-45ee-8381-d9650e9bdf8e)
+
+**Querying for object with specific property - THE LOGIC BEHIND QUERY**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/41f07d79-9d78-41f2-9bd6-d5276bf55a76)
+
+**Database query using regular expression - MongoDB**
+* Link: https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex
+* Definition: Provides regular expression capabilities for pattern matching strings in queries
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/5e2a209e-32c2-4831-914c-1fde5574f327)
+
+**Regular expression - getAllProductsStatic function vs getAllProducts function**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/487340e2-17ac-48d7-87a3-79acf6e63324)
+
+**Sorting product queries**
+* Link: https://mongoosejs.com/docs/queries.html
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/b978fcfe-3fa3-470c-aed6-43222a96df73)
+
+**Using sort.split(',').join(' ') to transform comma-separated string into space separated string**
+
+* Why do we use this method?
+  1) HTTP Query Parameters - convert string before passing it to DB query, making sorting criteria readable and easy to work with
+  2) Database Queries - Some database library accepts sorting criteria as a space-separated string, it's a matter of compatibility
+  3) Logging or Display
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/72c5ccd6-b50d-4af1-ad7c-ea7f8f2116b9)
+
+**Pagination Logic:**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/e530cec2-55ee-4ad5-a3af-7a5ed731f4db)
+
+**Numeric filters:**
+* To provide option for the user to search based on the number condition.
+* i.e. get a product with the price more than $100
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/b2f1405e-110f-4bc5-a786-5720a37f6569)
+
+**Numeric filters - transform numeric filters provided in a query string into a format suitable for MongoDB queries**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/62d9434e-687f-498d-845d-5f4878938579)
+
+**Parsing and processing numeric filters provided in a URL query string**
+
+![image](https://github.com/asyikin22/NODE-EXPRESS-PROJECTS/assets/148519441/081bcb5f-0880-44f1-9520-bebeb40cdfdb)
+
 
 
 
